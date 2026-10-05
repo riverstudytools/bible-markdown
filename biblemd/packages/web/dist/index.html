@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2b4c7e">
+  <title>Bible Markdown</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <script type="module" crossorigin src="./assets/index-D9RGnWeZ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C5uZSGx3.css">
+</head>
+<body>
+  <div id="app">
+    <header id="bar">
+      <button id="menu" aria-label="Books" data-help="Shows or hides the list of books on the left. Only needed on narrow screens." data-help-title="Book list">&#9776;</button>
+      <strong id="title">Bible Markdown</strong>
+      <span id="project" data-help="The project you have open. “(in browser)” means the files are stored inside this browser, not in a folder on your computer." data-help-title="Current project"></span>
+      <span class="grow"></span>
+      <button id="open-folder" data-help="Choose a folder on your computer that holds your Bible files. Files in Bible Markdown (.md), USFM (.usfm, .sfm) and Bible HTML (.html) are all shown together as one Bible. In Chrome and Edge your changes are saved straight into the folder." data-help-next="Pick a book from the list on the left." data-help-title="Open folder">Open folder</button>
+      <button id="open-files" data-help="Use this if your browser cannot open folders (Firefox, Safari, phones), or if you have a single file or a .zip. The files are kept inside this browser, so use “Download project” to save a copy to your computer." data-help-next="Pick a book from the list on the left." data-help-title="Open files or zip">Open files or zip</button>
+      <button id="reopen" hidden data-help="Opens the project you were working on last time." data-help-title="Reopen"></button>
+      <button id="new-book" disabled data-help="Starts a new, empty book in this project. You choose the book, the file format and the file name." data-help-next="Type the text of the first verse." data-help-title="New book">New book…</button>
+      <button id="convert" disabled data-help="Turns this file, or every file in the project, into another format (Bible Markdown, USFM or Bible HTML). You choose how much detail to keep and where the results go. Your original files are not changed unless you choose to overwrite." data-help-title="Convert">Convert…</button>
+      <button id="download" hidden data-help="Saves every file in this project to your computer as one .zip file. Needed because, in this browser, files are kept in the browser rather than in a folder." data-help-title="Download project">Download project</button>
+      <button id="help-btn" data-help="Opens a short guide: what each format is, how to write Bible Markdown, and where your files are saved." data-help-title="Guide">Guide</button>
+      <button id="explain" aria-pressed="false" data-help="Turns on Explain mode. While it is on, clicking any button, link or field tells you what it does instead of doing it. Click Explain again to turn it off." data-help-title="Explain">Explain</button>
+      <button id="settings" aria-label="Settings" data-help="Options for how text is read and previewed, such as turning straight quotes into curly quotes." data-help-title="Settings">&#9881;</button>
+    </header>
+    <div id="next" role="status"><span id="next-text"></span><span id="next-actions"></span></div>
+    <div id="body">
+      <nav id="nav" aria-label="Books">
+        <div id="nav-top">
+          <input id="filter" type="search" placeholder="Find a book… (for example Romans or ROM)" aria-label="Find a book" data-help="Type part of a book name or its three-letter code to narrow the list." data-help-title="Find a book" autocomplete="off">
+          <p class="hint" id="nav-intro">Books in this project. Click a book to show its chapters, then click a chapter number to jump straight to it.</p>
+        </div>
+        <div id="books"></div>
+      </nav>
+      <main id="work">
+        <div id="editor-wrap">
+          <div id="insert-bar" aria-label="Insert">
+            <span class="label">Insert <button class="info" type="button" aria-label="About the insert buttons" data-help-title="Insert buttons" data-help="These buttons add Bible Markdown for you at the cursor, so you do not have to remember the symbols. Select some text first for the buttons that wrap words, such as Footnote and Addition. They work on Bible Markdown files; for other formats, convert the file first.">i</button></span>
+            <button data-act="chapter" data-help-title="Chapter" data-help="Starts the next chapter. Writes the chapter and first verse number for you (for example 3:1).">Chapter</button>
+            <button data-act="verse" data-help-title="Verse" data-help="Inserts the next verse number at the cursor. Verses can start anywhere in a line.">Verse</button>
+            <button data-act="heading" data-help-title="Heading" data-help="Adds a section heading above the paragraph, like “The Birth of Jesus”.">Heading</button>
+            <button data-act="poetry" data-help-title="Poetry line" data-help="Starts a line of poetry with “/”. Extra spaces after the slash indent the line, relative to the other lines of the same poem.">Poetry</button>
+            <button data-act="addition" data-help-title="Addition" data-help="Marks words that are not in the original text but are added for clarity, like [the]. Select the words first, or press it and type.">[ ] Addition</button>
+            <button data-act="footnote" data-help-title="Footnote" data-help="Select the words the note is about, then press this. It adds { } around them and a place for the note below the paragraph. The words in { } must be the same in both places.">{ } Footnote</button>
+            <button data-act="smallcaps" data-help-title="Small capitals" data-help="Puts ^ after the word at the cursor so it prints in small capitals, as with LORD. Click right after the word first.">Lord^</button>
+            <button data-act="list" data-help-title="List item" data-help="Starts a bulleted list item. Indent by two spaces for a sub-item.">List</button>
+            <button data-act="note" data-help-title="Explanatory note" data-help="Adds a box of regular Markdown text. Before chapter 1 it is the book’s introduction; anywhere else it is a study note.">Note</button>
+            <button data-act="quote" data-help-title="Bible quotation" data-help="Adds a quoted Bible passage inside an explanatory note. Verse numbers inside it are shown but are not counted as verses of this book.">Quote</button>
+          </div>
+          <p id="insert-off" class="hint" hidden>The insert buttons work on Bible Markdown files. To use them here, press <b>Convert…</b> and turn this file into Bible Markdown.</p>
+          <div id="file-bar"><span id="file-name" data-help="The file you are editing, and its format." data-help-title="Current file">No file open</span><span id="save-state" data-help="Whether your latest changes are saved. Changes are saved automatically a moment after you stop typing." data-help-title="Saving"></span></div>
+          <div id="editor"></div>
+        </div>
+        <div id="preview-wrap">
+          <div id="welcome" hidden></div>
+          <div id="preview"></div>
+        </div>
+      </main>
+    </div>
+    <footer id="status"><span id="msg">Ready</span><button id="diag-btn" hidden data-help-title="Problems" data-help="Things the converter noticed in this file, such as a footnote with no matching note. The file still works; these are things to check. Click to see the list."></button></footer>
+    <aside id="diag" hidden></aside>
+    <div id="popover" popover="manual" hidden></div>
+  </div>
+  <input id="file-input" type="file" multiple accept=".md,.markdown,.usfm,.sfm,.html,.htm,.zip" hidden>
+  <input id="dir-input" type="file" webkitdirectory multiple hidden>
+
+  <dialog id="convert-dialog">
+    <form method="dialog" id="convert-form">
+      <h2>Convert</h2>
+      <p class="hint">Make a copy of your text in another format. Pick the options below; a summary of what will happen is shown before you press Convert.</p>
+      <label>Convert to <button class="info" type="button" aria-label="About this choice" data-help-title="Convert to" data-help="USFM is the standard format used by Paratext and most Bible software.\nBible Markdown is easy to write by hand.\nBible HTML can be opened in a web browser and styled with a stylesheet.">i</button>
+        <select name="to"><option value="usfm">USFM (for Paratext and other Bible software)</option><option value="biblemd">Bible Markdown (easy to write by hand)</option><option value="biblehtml">Bible HTML (for web pages)</option></select>
+      </label>
+      <label>Which files <button class="info" type="button" aria-label="About this choice" data-help-title="Which files" data-help="“This file only” converts the file you have open. “Every file” converts the whole project and keeps the folder layout. Files already in the chosen format are skipped when saving next to the originals.">i</button>
+        <select name="scope"><option value="file">Only the file I have open</option><option value="all">Every file in the project</option></select>
+      </label>
+      <label>How much detail to keep <button class="info" type="button" aria-label="About this choice" data-help-title="Detail" data-help="Everything: nothing is lost.\nEverything except noisy markup: drops very detailed markup such as word-by-word tags (you can edit the list in Settings) but keeps the words.\nOnly what Bible Markdown can show: a simple, readable text with chapters, verses, headings, poetry, additions and footnotes.">i</button>
+        <select name="fidelity">
+          <option value="full">Everything (nothing is lost)</option>
+          <option value="readable">Everything except noisy markup, such as word tags</option>
+          <option value="minimal">Only what Bible Markdown can show</option>
+        </select>
+      </label>
+      <label>Where to save the results <button class="info" type="button" aria-label="About this choice" data-help-title="Where to save" data-help="Next to the originals: new files with the same names appear in the same folders; an existing file with the same name is overwritten after you confirm.\nIn a new folder: keeps your project untouched.\nAs a zip download: nothing is saved in the project; you get one .zip file.">i</button>
+        <select name="where"><option value="next">Next to the originals</option><option value="folder">In a new folder</option><option value="zip">As a zip download</option></select>
+      </label>
+      <p id="convert-summary" class="summary"></p>
+      <menu><button value="cancel">Cancel</button><button id="convert-go" value="go">Convert</button></menu>
+    </form>
+  </dialog>
+
+  <dialog id="newbook-dialog">
+    <form method="dialog" id="newbook-form">
+      <h2>New book</h2>
+      <p class="hint">Creates an empty book you can start typing into.</p>
+      <label>Book <button class="info" type="button" aria-label="About this choice" data-help-title="Book" data-help="Choose the book to create. Its three-letter code is used inside the file (for example ROM for Romans). Choose “Other” for books that are not in the list.">i</button>
+        <select name="book" id="nb-book"></select>
+      </label>
+      <label id="nb-other" hidden>Three-letter book code
+        <input name="code" id="nb-code" placeholder="3 letters or digits, for example TOB" maxlength="3" autocomplete="off">
+      </label>
+      <label>Name shown for the book <button class="info" type="button" aria-label="About this field" data-help-title="Name" data-help="The title of the book in your translation, for example “Romans” or the name in your own language." data-help-next="Press Create, then type the text of the first verse.">i</button>
+        <input name="name" id="nb-name" placeholder="For example: Romans" autocomplete="off">
+      </label>
+      <label>Format <button class="info" type="button" aria-label="About this choice" data-help-title="Format" data-help="Bible Markdown is the easiest to type by hand and has the insert buttons. Choose USFM or Bible HTML if you want to work in those formats directly.">i</button>
+        <select name="format"><option value="biblemd">Bible Markdown (recommended)</option><option value="usfm">USFM</option><option value="biblehtml">Bible HTML</option></select>
+      </label>
+      <label>File name <button class="info" type="button" aria-label="About this field" data-help-title="File name" data-help="The name of the file, without the ending. The right ending (.md, .usfm or .html) is added for you. You can use folders, like “new-testament/romans”.">i</button>
+        <input name="file" id="nb-file" placeholder="For example: romans (the ending is added for you)" autocomplete="off">
+      </label>
+      <p id="nb-error" class="error" hidden></p>
+      <menu><button value="cancel">Cancel</button><button id="nb-go" value="go">Create</button></menu>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog">
+    <form method="dialog">
+      <h2>Settings</h2>
+      <p class="hint">These are remembered in this browser.</p>
+      <label class="row"><input type="checkbox" id="opt-typography"> <span><b>Curly quotes and dashes</b><br><span class="hint">While reading Bible Markdown, turn straight quotes (" and ') into curly quotes and --- or -- into dashes. Turn this off if your text already has the characters you want.</span></span></label>
+      <label class="row"><input type="checkbox" id="opt-sync"> <span><b>Follow the cursor</b><br><span class="hint">Scroll the preview to the passage you are typing in.</span></span></label>
+      <label><b>Noisy markers</b><br><span class="hint">Markers dropped by the middle detail level when you convert. Their words are kept. Separate with spaces.</span>
+        <textarea id="opt-noisy" rows="3" placeholder="For example: w wg wh wa rb k ts" spellcheck="false"></textarea>
+      </label>
+      <menu><button type="button" id="opt-reset" data-help="Puts the noisy-marker list back to the standard list." data-help-title="Reset list">Reset list</button><button value="close">Done</button></menu>
+    </form>
+  </dialog>
+
+  <dialog id="help-dialog">
+    <form method="dialog">
+      <h2>Guide</h2>
+      <h3>What is this?</h3>
+      <p>A place to write and check a Bible translation. It shows files in three formats as one Bible, and converts between them.</p>
+      <ul>
+        <li><b>Bible Markdown</b> (.md): plain text that is easy to type, like the examples below.</li>
+        <li><b>USFM</b> (.usfm, .sfm): the standard format used by Paratext and most Bible software.</li>
+        <li><b>Bible HTML</b> (.html): a web page that can be styled with a stylesheet.</li>
+      </ul>
+      <h3>First steps</h3>
+      <ol>
+        <li>Press <b>Open folder</b> (or <b>Open files or zip</b>), or try the example.</li>
+        <li>Pick a book on the left, then a chapter number.</li>
+        <li>Edit in the left pane; the preview on the right updates as you type.</li>
+        <li>Press <b>Convert…</b> to make another format.</li>
+      </ol>
+      <h3>Writing Bible Markdown</h3>
+      <table class="cheat">
+        <tr><th>Write</th><th>You get</th></tr>
+        <tr><td><code># Romans (ROM)</code></td><td>The start of the book Romans</td></tr>
+        <tr><td><code>1:1 In the beginning…</code></td><td>Chapter 1, verse 1</td></tr>
+        <tr><td><code>… end. 2 Next verse</code></td><td>A verse number is a number followed by a space</td></tr>
+        <tr><td><code>483\ years</code></td><td>A real number in the text (the backslash stops it being a verse number)</td></tr>
+        <tr><td><code>### A heading</code></td><td>A section heading</td></tr>
+        <tr><td><code>/ A line of poetry</code></td><td>Poetry; extra spaces after / indent the line</td></tr>
+        <tr><td><code>[added words]</code></td><td>Words added for clarity</td></tr>
+        <tr><td><code>Lord^</code></td><td>Small capitals (LORD)</td></tr>
+        <tr><td><code>some {words} here</code><br><code>{words}: the note</code></td><td>A footnote on “words”; the note text goes below the paragraph</td></tr>
+        <tr><td><code>- item</code></td><td>A list item</td></tr>
+        <tr><td><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> … <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></td><td>An explanatory note in regular Markdown (an introduction before chapter 1)</td></tr>
+        <tr><td><code>```bible John 3:16</code> … <code>```</code></td><td>A quoted passage inside a note; its numbers are not counted as verses</td></tr>
+      </table>
+      <h3>Where are my files?</h3>
+      <p>In Chrome and Edge, files stay in your folder and are saved automatically. In other browsers they are kept inside the browser; press <b>Download project</b> to save a copy to your computer.</p>
+      <h3>Seeing what a button does</h3>
+      <p>Hover over or tab to any button for a tip. Press <b>Explain</b> to turn on Explain mode, then click anything to read about it without using it. The small <b>i</b> buttons explain the choices in forms.</p>
+      <menu><button value="close">Close</button></menu>
+    </form>
+  </dialog>
+</body>
+</html>

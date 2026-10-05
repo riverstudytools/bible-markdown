@@ -1,0 +1,47 @@
+/* Reference stylesheet for Bible HTML (non-normative). */
+:host, .bible { display: block; }
+.bible { color: var(--text, #1c1c1c); font-family: Georgia, 'Times New Roman', serif; font-size: 1.05rem; line-height: 1.55; max-width: 42em; margin: 0 auto; padding: 1rem 1.25rem 4rem; }
+[hidden] { display: none; }
+article.id { margin-bottom: 3rem; }
+h1.mt, h1.imt { text-align: center; font-size: 1.9rem; margin: 1.2em 0 .6em; }
+h1.mt span, h1.imt span { display: block; }
+.mt2, .imt2 { font-size: 1.3rem; font-weight: normal; }
+h2.cn { font-size: 1.7rem; margin: 1.6em 0 .4em; color: var(--accent, #2b4c7e); }
+h2.ms1 { font-size: 1.3rem; text-align: center; margin: 1.4em 0 .4em; }
+h3.s1, h4.s2, h5.s3, h6.s4 { font-size: 1.05rem; font-style: italic; margin: 1.1em 0 .25em; }
+p { margin: 0 0 .6em; }
+p.r, p.sr, p.mr { font-size: .9rem; text-align: center; margin: 0 0 .5em; }
+p.d { font-style: italic; }
+p.m, p.nb { margin-top: 0; }
+p.q1, p.q2, p.q3, p.q4, p.qr, p.qc, p.qm1, p.qm2 { margin: 0; }
+p.q1 { padding-left: 2em; text-indent: -1em; }
+p.q2 { padding-left: 3em; text-indent: -1em; }
+p.q3 { padding-left: 4em; text-indent: -1em; }
+p.q4 { padding-left: 5em; text-indent: -1em; }
+p.qr { text-align: right; } p.qc { text-align: center; }
+p.pi1 { text-indent: 1.5em; } p.pmo, p.pm, p.pmc, p.pmr { margin-left: 1em; }
+div.b, div.sd1, div.sd2 { height: .9em; }
+sup.v, sup.va { font-size: .7em; font-weight: bold; color: var(--accent, #2b4c7e); margin-right: .1em; }
+sup.caller { font-size: .7em; } sup.caller a { text-decoration: none; color: var(--accent, #2b4c7e); }
+.add { font-style: italic; }
+.nd { font-variant: small-caps; } .nd::first-letter { font-variant: normal; }
+.wj { color: #a02020; }
+.qs { font-style: italic; float: right; }
+.tl { font-style: italic; } .bk { font-style: italic; }
+aside.notes { font-size: .85rem; border-top: 1px solid var(--rule, #aaa); margin-top: 1.5em; padding-top: .4em; }
+aside.notes ol { margin: .2em 0; padding-left: 1.6em; list-style-type: lower-alpha; }
+aside.notes ol.x { list-style-type: lower-alpha; }
+aside.notes .fr { font-weight: bold; } aside.notes .fq { font-style: italic; }
+aside.esb { border: 1px solid var(--rule, #aaa); background: var(--panel, #f5f5f2); padding: .5em 1em; margin: 1em 0; border-radius: 6px; }
+table.table { border-collapse: collapse; margin: .6em 0; } table.table td, table.table th { border: 1px solid var(--rule, #aaa); padding: .2em .6em; }
+td.tcr1, td.tcr2, td.tcr3, th.thr1, th.thr2, th.thr3 { text-align: right; }
+[data-line] { cursor: text; }
+.flash { background: rgba(255, 220, 90, .45); transition: background 1s; }
+@media (prefers-color-scheme: dark) {
+  .bible { --text: #e6e6e6; --accent: #8fb4ee; --rule: #666; --panel: #26282c; }
+  .wj { color: #ff8a8a; }
+}
+blockquote.zquote { margin: .8em 0; padding: .1em 1em; border-left: 3px solid var(--accent, #2b4c7e); background: var(--panel, #f5f5f2); }
+blockquote.zquote[data-ref]::before { content: attr(data-ref); display: block; font-size: .8rem; color: var(--accent, #2b4c7e); font-variant: small-caps; }
+sup.sup { font-size: .7em; color: var(--accent, #2b4c7e); }
+a.jmp { color: var(--accent, #2b4c7e); }

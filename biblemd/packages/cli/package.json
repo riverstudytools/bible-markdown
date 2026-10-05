@@ -1,0 +1,12 @@
+{
+  "name": "biblemd",
+  "version": "0.2.0",
+  "description": "Command line converter between Bible Markdown, Bible HTML and USFM",
+  "type": "module",
+  "license": "MIT-0",
+  "bin": { "biblemd": "dist/cli.js" },
+  "files": ["dist"],
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": { "biblemd-core": "0.2.0" },
+  "devDependencies": { "typescript": "^5.6.0", "@types/node": "^22.0.0" }
+}

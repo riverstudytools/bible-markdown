@@ -1,0 +1,12 @@
+{
+  "name": "biblemd-monorepo",
+  "private": true,
+  "version": "0.2.0",
+  "workspaces": ["packages/core", "packages/cli", "packages/web"],
+  "scripts": {
+    "build": "npm run build -w biblemd-core && npm run build -w biblemd && npm run build -w biblemd-web",
+    "test": "npm test -w biblemd-core && npm test -w biblemd-web",
+    "dev": "npm run dev -w biblemd-web"
+  },
+  "license": "MIT-0"
+}

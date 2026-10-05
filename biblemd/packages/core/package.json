@@ -1,0 +1,31 @@
+{
+  "name": "biblemd-core",
+  "version": "0.2.0",
+  "description": "Conversion engine between Bible Markdown, Bible HTML and USFM",
+  "type": "module",
+  "license": "MIT-0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "html-validate": "^9.7.1",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "dependencies": {
+    "markdown-it": "^14.3.2"
+  }
+}
